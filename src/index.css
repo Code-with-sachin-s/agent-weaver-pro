@@ -113,7 +113,31 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html, body, #root {
+    min-height: 100%;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    background: var(--gradient-bg);
   }
 }
+
+@layer utilities {
+  .font-mono-tech {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  .glow-primary { box-shadow: var(--shadow-glow); }
+  .shadow-card-soft { box-shadow: var(--shadow-card); }
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0.6); }
+  100% { box-shadow: 0 0 0 18px hsl(var(--primary) / 0); }
+}
+@keyframes flow-dash {
+  to { stroke-dashoffset: -20; }
+}
+.node-active { animation: pulse-ring 1.4s ease-out infinite; }
+.edge-active { animation: flow-dash 1s linear infinite; }
+

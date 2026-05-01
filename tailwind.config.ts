@@ -57,6 +57,17 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        node: {
+          planner: "hsl(var(--node-planner))",
+          search: "hsl(var(--node-search))",
+          code: "hsl(var(--node-code))",
+          executor: "hsl(var(--node-executor))",
+          response: "hsl(var(--node-response))",
+        },
+      },
+      fontFamily: {
+        display: ['"Space Grotesk"', 'ui-sans-serif', 'system-ui'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       borderRadius: {
         lg: "var(--radius)",

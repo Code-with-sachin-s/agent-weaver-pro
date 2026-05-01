@@ -8,35 +8,49 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Dark, technical, terminal-inspired palette */
+    --background: 230 25% 7%;
+    --foreground: 210 30% 92%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 230 22% 10%;
+    --card-foreground: 210 30% 92%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 230 22% 10%;
+    --popover-foreground: 210 30% 92%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 160 84% 55%;            /* neon emerald */
+    --primary-foreground: 230 25% 7%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 230 18% 14%;
+    --secondary-foreground: 210 30% 92%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 230 18% 14%;
+    --muted-foreground: 220 10% 60%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 280 90% 65%;             /* violet */
+    --accent-foreground: 230 25% 7%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 75% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 230 18% 18%;
+    --input: 230 18% 16%;
+    --ring: 160 84% 55%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Node colors */
+    --node-planner: 200 95% 60%;
+    --node-search: 280 90% 65%;
+    --node-code: 35 95% 60%;
+    --node-executor: 0 80% 65%;
+    --node-response: 160 84% 55%;
+
+    --gradient-bg: radial-gradient(ellipse at top, hsl(230 30% 12%) 0%, hsl(230 25% 7%) 60%);
+    --gradient-primary: linear-gradient(135deg, hsl(160 84% 55%), hsl(180 90% 55%));
+    --gradient-accent: linear-gradient(135deg, hsl(280 90% 65%), hsl(320 85% 60%));
+    --shadow-glow: 0 0 40px hsl(160 84% 55% / 0.25);
+    --shadow-card: 0 8px 30px hsl(230 50% 3% / 0.5);
 
     --sidebar-background: 0 0% 98%;
 
@@ -99,7 +113,31 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html, body, #root {
+    min-height: 100%;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    background: var(--gradient-bg);
   }
 }
+
+@layer utilities {
+  .font-mono-tech {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  .glow-primary { box-shadow: var(--shadow-glow); }
+  .shadow-card-soft { box-shadow: var(--shadow-card); }
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0.6); }
+  100% { box-shadow: 0 0 0 18px hsl(var(--primary) / 0); }
+}
+@keyframes flow-dash {
+  to { stroke-dashoffset: -20; }
+}
+.node-active { animation: pulse-ring 1.4s ease-out infinite; }
+.edge-active { animation: flow-dash 1s linear infinite; }
+
